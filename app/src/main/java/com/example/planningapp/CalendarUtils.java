@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class CalendarUtils {
@@ -13,6 +14,37 @@ public class CalendarUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         return date.format(formatter);
 
+    }
+    public static LocalDate toDate(String strDate){
+        System.out.println("ici " +strDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date;
+
+        try {
+            date = LocalDate.parse(strDate, formatter);
+        } catch (DateTimeParseException e) {
+            // Gestion de l'exception en cas de format de date incorrect
+            e.printStackTrace();
+            date = selectedDate;
+        }
+        System.out.println(date);
+
+        return date;
+
+    }
+
+    public static LocalTime toTime(String strTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime time;
+        try {
+            time = LocalTime.parse(strTime, formatter);
+        } catch (DateTimeParseException e) {
+            // Gestion de l'exception en cas de format de date incorrect
+            e.printStackTrace();
+            time = LocalTime.now();
+        }
+        System.out.println(time);
+        return time;
     }
 
     public static String formattedTime(LocalTime time) {
@@ -84,6 +116,7 @@ public class CalendarUtils {
         }
         return null;
     }
+
 
 
 }

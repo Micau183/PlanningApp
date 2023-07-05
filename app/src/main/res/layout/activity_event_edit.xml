@@ -8,23 +8,40 @@
     android:orientation="vertical"
     tools:context=".EventEditActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Name:"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:textColor="@color/black"/>
+
     <EditText
+        android:layout_marginTop="30dp"
         android:id="@+id/eventNameET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:ems="10"
+        android:gravity="center"
+        android:hint="Nouveau"
         android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/eventDateET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="date"
+        android:hint="jj/mm/aaaa" />
+
+    <EditText
+        android:id="@+id/eventTimeET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
+        android:inputType="time"
+        android:hint="hh:mm"/>
 
     <TextView
         android:id="@+id/eventDateTV"

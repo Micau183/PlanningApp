@@ -9,31 +9,35 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class EventEditActivity extends AppCompatActivity {
 
-    private EditText eventNameET;
-    private TextView eventDateTV, eventTimeTV;
+
+    private EditText eventNameET, eventDateET, eventTimeET;
     private LocalTime time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
         initWidgets();
-        time = LocalTime.now();
-        eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
-        eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+
     }
 
     private void initWidgets() {
         eventNameET = findViewById(R.id.eventNameET);
-        eventDateTV = findViewById(R.id.eventDateTV);
-        eventTimeTV = findViewById(R.id.eventTimeTV);
+        eventDateET = findViewById(R.id.eventDateET);
+        eventTimeET = findViewById(R.id.eventTimeET);
     }
 
     public void saveEventAction(View view) {
         String eventName = eventNameET.getText().toString();
+        String eventDate = eventDateET.getText().toString();
+        String eventTime = eventTimeET.getText().toString();
+        LocalDate date = CalendarUtils.toDate(eventDate);
+        LocalTime time = CalendarUtils.toTime(eventTime);
+
         Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
         Event.eventsList.add(newEvent);
         finish();
