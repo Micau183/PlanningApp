@@ -32,14 +32,17 @@ public class EventEditActivity extends AppCompatActivity {
     }
 
     public void saveEventAction(View view) {
+        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
         String eventName = eventNameET.getText().toString();
         String eventDate = eventDateET.getText().toString();
         String eventTime = eventTimeET.getText().toString();
         LocalDate date = CalendarUtils.toDate(eventDate);
         LocalTime time = CalendarUtils.toTime(eventTime);
+        int id = Event.eventsList.size();
 
-        Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
+        Event newEvent = new Event(id, eventName, CalendarUtils.selectedDate, time);
         Event.eventsList.add(newEvent);
+        sqLiteManager.addEventToDatabase(newEvent);
         finish();
     }
 }

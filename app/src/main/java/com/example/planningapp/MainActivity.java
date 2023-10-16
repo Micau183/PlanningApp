@@ -29,7 +29,13 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.O
         setContentView(R.layout.activity_main);
         initWidgets();
         CalendarUtils.selectedDate = LocalDate.now();
+       // loadFromDBToMemory();
         setMonthView();
+    }
+
+    private void loadFromDBToMemory() {
+        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
+        sqLiteManager.populateEventListArray();
     }
 
     private void setMonthView() {
